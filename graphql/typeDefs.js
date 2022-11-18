@@ -2,6 +2,9 @@ const {gql} = require('apollo-server');
 
 // graphql
 module.exports = gql`
+
+scalar DateTime
+
 type User{
     firstname: String,
     lastname: String,
@@ -18,8 +21,8 @@ type Professor{
     password: String,
     privilege: Int,
     fieldOfInterest:String,
-    schedule: [User],
-    appointments: [User]
+    schedule: [DateTime],
+    appointments: [String]
 }
 
 input UserInput{
@@ -40,19 +43,30 @@ input ProfessorInput{
     fieldOfInterest:String,
 }
 
+
+#Create Professor Schedule
+input ProfessorSchedule{
+    time: DateTime
+}
+
 type Query{
     user(ID:ID!):User!
     getUsers(amount:Int):[User]
     professor(ID:ID!):Professor!
-    # getProfessors(amount:Int):[Professor]
+    getProfessors(amount:Int):[Professor]
 }
 
 type Mutation{
     createUser(userInput:UserInput):User!
+    createUsers(userInput:[UserInput]):User!
+
     deleteUser(ID:ID!): User!
     editUser(ID:ID!, userInput:UserInput): Boolean
+
     createProfessor(professorInput:ProfessorInput):Professor
+
     deleteProfessor(ID:ID!):Professor!
     editProfessor(ID:ID!, professorInput:ProfessorInput):Boolean
+    createProfessorSchedule(ID:ID!,professorSchedule:ProfessorSchedule):Boolean
 }
 `
