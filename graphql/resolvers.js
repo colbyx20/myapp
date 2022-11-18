@@ -69,17 +69,17 @@ module.exports={
                 lastname:lastname
             })).modifiedCount;
             return wasEdited; // 1 if something was edited, or 0 if nothing was edited
+        },
+        async editProfessor(_,{ID,professorInput:{firstname,lastname,email,login,password,fieldOfInterest}}){
+            const wasEdited = (await Professor.updateOne({_id:ID},{
+                firstname:firstname,
+                lastname:lastname,
+                email:email,
+                login:login,
+                password:password,
+                fieldOfInterest:fieldOfInterest
+            })).modifiedCount;
+            return wasEdited;
         }
-        // async editProfessor(_,{ID,professorInput:{firstname,lastname,email,login,password,fieldOfInterest}}){
-        //     const wasEdited = (await Professor.updateOne({_id:ID},{
-        //         firstname:firstname,
-        //         lastname:lastname,
-        //         email:email,
-        //         login:login,
-        //         password:password,
-        //         fieldOfInterest:fieldOfInterest
-        //     })).modifiedCount;
-        //     return wasEdited;
-        // }
     }
 }

@@ -52,7 +52,7 @@ type Mutation{
     deleteUser(ID:ID!): User!
     editUser(ID:ID!, userInput:UserInput): Boolean
     createProfessor(professorInput:ProfessorInput):Professor
-    # deleteProfessor(ID:ID!):Professor!
-    # editProfessor(ID:ID!, professorInput:ProfessorInput):Boolean
+    deleteProfessor(ID:ID!):Professor!
+    editProfessor(ID:ID!, professorInput:ProfessorInput):Boolean
 }
 `
