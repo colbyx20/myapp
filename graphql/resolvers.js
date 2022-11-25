@@ -19,13 +19,14 @@ module.exports={
         }
     },
     Mutation:{
-        async createUser(_,{userInput:{firstname,lastname,email,login,password}}){
+        async createUser(_,{userInput:{firstname,lastname,email,login,password, group}}){
             const createdUser = new User({
                 firstname:firstname,
                 lastname:lastname,
                 email:email,
                 login:login,
-                password:password
+                password:password,
+                group:group
             });
 
             const res = await createdUser.save(); // save to mongoDB database
@@ -60,7 +61,7 @@ module.exports={
                 email:email,
                 login:login,
                 password:password,
-                fieldOfInterest:fieldOfInterest
+                fieldOfInterest:fieldOfInterest,
             });
             const res = await createdProfessor.save(); // save to mongoDB database
 
@@ -70,18 +71,11 @@ module.exports={
             }
 
         },
-        async createProfessorSchedule(_,{professorSchedule:{time}}){
-            const createSchedule = new Professor({
-                appointments:{
-                    time: time
-                }
-            });
-
-            const res = await createProfessorSchedule.save();
-            return{
-                id:res.id,
-                ...res._doc
-            }
+        async createProfessorSchedule(_,{ID, professorScheduleInput:{time}}){
+            const date = new Date().toISOString();
+            const isoDate = new Date(date);
+            const res = (await Professor.findByIdAndUpdate({_id:ID},{$push:{schedule:isoDate}})).modifiedCount;
+            return res;
         },
         // deleteUser(ID:ID!): User!
         async deleteUser(_,{ID}){

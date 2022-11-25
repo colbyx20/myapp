@@ -6,11 +6,13 @@ module.exports = gql`
 scalar DateTime
 
 type User{
+    id:ID,
     firstname: String,
     lastname: String,
     email: String,
     login: String,
-    password: String
+    password: String,
+    group: String
 }
 
 type Professor{
@@ -30,7 +32,8 @@ input UserInput{
     lastname: String,
     email: String,
     login: String,
-    password: String
+    password: String,
+    group: String
 }
 
 # input for professors 
@@ -40,17 +43,17 @@ input ProfessorInput{
     email: String,
     login: String,
     password: String,
-    fieldOfInterest:String,
+    fieldOfInterest:String
 }
 
 
 #Create Professor Schedule
-input ProfessorSchedule{
+input ProfessorScheduleInput{
     time: DateTime
 }
 
 type Query{
-    user(ID:ID!):User!
+    user(ID:ID!):[User!]
     getUsers(amount:Int):[User]
     professor(ID:ID!):Professor!
     getProfessors(amount:Int):[Professor]
@@ -67,6 +70,6 @@ type Mutation{
 
     deleteProfessor(ID:ID!):Professor!
     editProfessor(ID:ID!, professorInput:ProfessorInput):Boolean
-    createProfessorSchedule(ID:ID!,professorSchedule:ProfessorSchedule):Boolean
+    createProfessorSchedule(ID:ID!,professorScheduleInput:ProfessorScheduleInput):Boolean
 }
 `
