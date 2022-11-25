@@ -72,7 +72,7 @@ module.exports={
 
         },
         async createProfessorSchedule(_,{ID, professorScheduleInput:{time}}){
-            const date = new Date().toISOString();
+            const date = new Date(time).toISOString();
             const isoDate = new Date(date);
             const res = (await Professor.findByIdAndUpdate({_id:ID},{$push:{schedule:isoDate}})).modifiedCount;
             return res;
