@@ -1,7 +1,7 @@
 const {ApolloServer} = require('apollo-server');
 const mongoose = require('mongoose');
 
-const MONGODB_URI = "mongodb+srv://group13:group13Stack@cluster0.td6d6.mongodb.net/?retryWrites=true&w=majority";
+const MONGODB_URI = "mongodb+srv://m001-student:pass123@sandbox.xkmg7i0.mongodb.net/colbydb";
 
 // apollo server
 // typeDefs: Graphql type Definitions
