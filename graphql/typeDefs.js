@@ -71,5 +71,7 @@ type Mutation{
     deleteProfessor(ID:ID!):Professor!
     editProfessor(ID:ID!, professorInput:ProfessorInput):Boolean
     createProfessorSchedule(ID:ID!,professorScheduleInput:ProfessorScheduleInput):Boolean
+
+    groupStudents()
 }
 `
