@@ -1,19 +1,6 @@
 import {gql, useQuery} from '@apollo/client';
 import UserRow from './UserRow';
-const GET_USERS = gql`
-
-query Query($amount: Int) {
-  getUsers(amount: $amount) {
-    firstname
-    lastname
-    group
-    email
-    id
-    login
-    password
-  }
-}
-`
+import {GET_USERS} from '../queries/getAllUsers';
 
 export default function Users() {
 
