@@ -15,6 +15,7 @@ const server = new ApolloServer({
     resolvers
 });
 
+
 mongoose.connect(MONGODB_URI, {useNewUrlParser:true})
     .then(()=>{
         console.log("MongoDb connection successful");
